@@ -6,7 +6,7 @@ default:
   archive: true          # 超期后是否归档（否则删除）
 
 overrides:
-  # yunqing/github-trending:
+  # yunqy/github-trending:
   #   warm_days: 365
   # lisi/taobao-product:
   #   warm_days: 30

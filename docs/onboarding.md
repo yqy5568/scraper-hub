@@ -50,7 +50,7 @@ class Scraper(BaseScraper):
         store.save_jsonl(items, "result.jsonl")
 ```
 
-参考 `projects/yunqing/github-trending/` 的完整写法。
+参考 `projects/yunqy/github-trending/` 的完整写法。
 
 ## 5. 配置
 

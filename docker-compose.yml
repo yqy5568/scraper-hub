@@ -1,10 +1,10 @@
 services:
-  # ——— 示例：yunqing 的 github-trending ———
-  yunqing-github-trending:
+  # ——— 示例：yunqy 的 github-trending ———
+  yunqy-github-trending:
     build:
       context: .
       args:
-        OWNER: yunqing
+        OWNER: yunqy
         PROJECT: github-trending
     env_file: .env
     volumes:

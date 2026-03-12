@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from projects.yunqing.github_trending.parser import parse_trending_page
+from projects.yunqy.github_trending.parser import parse_trending_page
 
 FIXTURES = Path(__file__).parent / "fixtures"
 

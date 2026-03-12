@@ -1,6 +1,6 @@
 project:
   name: "github-trending"
-  owner: "yunqing"
+  owner: "yunqy"
   description: "抓取 GitHub Trending 榜单，按语言/时间维度归档"
 
 target:
@@ -16,7 +16,7 @@ request:
 
 storage:
   type: "json"
-  output_dir: "./data/yunqing/github-trending"
+  output_dir: "./data/yunqy/github-trending"
 
 schedule:
   cron: "0 8 * * *"

@@ -2,7 +2,7 @@
 packages/                     @yqy5568
 
 # 成员目录（入职时由 make add-member 自动追加）
-projects/yunqing/**           @yqy5568
+projects/yunqy/**           @yqy5568
 
 # 基础设施：仅 Lead
 .github/**                    @yqy5568

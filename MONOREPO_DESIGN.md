@@ -60,7 +60,7 @@ scraper-hub/
 │
 ├── projects/                          # ★ 按成员分目录 ★
 │   │
-│   ├── yunqing/                       # —— 示例：Lead 的所有项目 ——
+│   ├── yunqy/                       # —— 示例：Lead 的所有项目 ——
 │   │   ├── github-trending/           # GitHub Trending 榜单
 │   │   │   ├── scraper.py
 │   │   │   ├── config.yaml
@@ -141,7 +141,7 @@ packages/                     @lead-id
 
 # ═══ 每人的目录：通配符一劳永逸 ═══
 # 新成员入职时通过 make add-member 自动追加，离职时注释掉（不删除）
-projects/yunqing/**           @lead-id
+projects/yunqy/**           @lead-id
 # projects/成员B/**           @成员B-github-id  @lead-id
 # projects/成员C/**           @成员C-github-id  @lead-id
 
@@ -262,8 +262,8 @@ fix/{成员名}/{项目名}-{描述}           ← Bug 修复
 refactor/packages-{模块名}            ← 公共库重构
 
 示例：
-  feature/yunqing/github-trending-add-language-filter
-  fix/yunqing/github-repos-login-expired
+  feature/yunqy/github-trending-add-language-filter
+  fix/yunqy/github-repos-login-expired
   refactor/packages-proxy-pool-v2
 ```
 
@@ -427,14 +427,14 @@ class BaseScraper(ABC):
 ### 7.3 各项目使用公共库
 
 ```python
-# projects/yunqing/github-trending/scraper.py
+# projects/yunqy/github-trending/scraper.py
 
 from packages.core.base_scraper import BaseScraper
 
 class GithubTrendingScraper(BaseScraper):
 
     def __init__(self):
-        super().__init__("yunqing/github-trending")
+        super().__init__("yunqy/github-trending")
         self.languages = self.config.get("languages", ["python", "javascript", "go"])
 
     def fetch(self, url):
@@ -450,14 +450,14 @@ class GithubTrendingScraper(BaseScraper):
 ```
 
 ```python
-# projects/yunqing/huggingface-models/scraper.py
+# projects/yunqy/huggingface-models/scraper.py
 
 from packages.core.base_scraper import BaseScraper
 
 class HuggingFaceModelScraper(BaseScraper):
 
     def __init__(self):
-        super().__init__("yunqing/huggingface-models")
+        super().__init__("yunqy/huggingface-models")
 
     def fetch(self, url):
         return self.client.get(url, headers={"Accept": "application/json"})
@@ -477,10 +477,10 @@ class HuggingFaceModelScraper(BaseScraper):
 每个项目的 README.md 头部必须有元信息：
 
 ```yaml
-# projects/yunqing/github-trending/README.md 头部
+# projects/yunqy/github-trending/README.md 头部
 
 ---
-owner: yunqing
+owner: yunqy
 target: GitHub Trending
 status: running          # running / paused / deprecated / archived
 created: 2026-03-01
@@ -494,9 +494,9 @@ schedule: "0 8 * * *"    # 每天早上8点
 ```
 | 负责人 | 项目 | 目标站点 | 状态 | 调度 |
 |--------|------|---------|------|------|
-| yunqing | github-trending | GitHub Trending | running | 每天8点 |
-| yunqing | github-repos | GitHub 仓库 | running | 每小时 |
-| yunqing | huggingface-models | HuggingFace 模型 | running | 每天6点 |
+| yunqy | github-trending | GitHub Trending | running | 每天8点 |
+| yunqy | github-repos | GitHub 仓库 | running | 每小时 |
+| yunqy | huggingface-models | HuggingFace 模型 | running | 每天6点 |
 | ... | ... | ... | ... | ... |
 ```
 
@@ -778,11 +778,11 @@ click>=8.1          # CLI 工具
 ### 10.2 config.yaml 示例（每个项目一份）
 
 ```yaml
-# projects/yunqing/github-trending/config.yaml
+# projects/yunqy/github-trending/config.yaml
 
 project:
   name: github-trending
-  owner: yunqing
+  owner: yunqy
   description: GitHub Trending 榜单抓取
 
 target:
@@ -829,7 +829,7 @@ PROJECT=$2
 
 if [ -z "$OWNER" ] || [ -z "$PROJECT" ]; then
     echo "用法: $0 <owner> <project-name>"
-    echo "示例: $0 yunqing github-trending"
+    echo "示例: $0 yunqy github-trending"
     exit 1
 fi
 
@@ -979,12 +979,12 @@ __pycache__/
 ```
 第 1 周：搭骨架
   1. 创建 GitHub Org + 仓库
-  2. 初始化目录结构（packages/ + Lead 自己的 projects/yunqing/ + _template，其他成员入职时动态创建）
+  2. 初始化目录结构（packages/ + Lead 自己的 projects/yunqy/ + _template，其他成员入职时动态创建）
   3. 配置 CODEOWNERS + 分支保护
   4. 写好 _template/
 
 第 2 周：迁移试点
-  5. Lead 先把一个现有项目迁到 projects/yunqing/ 下，验证流程
+  5. Lead 先把一个现有项目迁到 projects/yunqy/ 下，验证流程
   6. 提取公共代码到 packages/（HTTP client、日志）
   7. 跑通 CI
 
@@ -1118,7 +1118,7 @@ pre-commit install
 范围 = 成员名/项目名 或 packages/模块名
 
 示例：
-  feat(yunqing/github-trending): 新增语言过滤
+  feat(yunqy/github-trending): 新增语言过滤
   fix(packages/http): 修复代理池连接泄漏
   docs: 更新反反爬经验库
 ```
@@ -1158,14 +1158,14 @@ CMD ["python", "-m", "projects.${OWNER}.${PROJECT}.scraper"]
 ### 17.2 构建与运行
 
 ```bash
-# 构建 yunqing 的 github-trending 爬虫
+# 构建 yunqy 的 github-trending 爬虫
 docker build \
-  --build-arg OWNER=yunqing \
+  --build-arg OWNER=yunqy \
   --build-arg PROJECT=github-trending \
-  -t scraper-hub/yunqing-github-trending .
+  -t scraper-hub/yunqy-github-trending .
 
 # 运行
-docker run --env-file .env scraper-hub/yunqing-github-trending
+docker run --env-file .env scraper-hub/yunqy-github-trending
 ```
 
 ### 17.3 docker-compose 批量编排（可选）
@@ -1173,20 +1173,20 @@ docker run --env-file .env scraper-hub/yunqing-github-trending
 ```yaml
 # docker-compose.yml
 services:
-  yunqing-github-trending:
+  yunqy-github-trending:
     build:
       context: .
       args:
-        OWNER: yunqing
+        OWNER: yunqy
         PROJECT: github-trending
     env_file: .env
     restart: unless-stopped
 
-  yunqing-github-repos:
+  yunqy-github-repos:
     build:
       context: .
       args:
-        OWNER: yunqing
+        OWNER: yunqy
         PROJECT: github-repos
     env_file: .env
     restart: unless-stopped
@@ -1204,7 +1204,7 @@ services:
 # packages/notify/heartbeat.py 提供的能力
 
 上报内容：
-  - 项目名（yunqing/github-trending）
+  - 项目名（yunqy/github-trending）
   - 本次运行状态：success / partial / failed
   - 抓取条数
   - 耗时
@@ -1288,9 +1288,9 @@ default:
   archive: true           # 超过 warm_days 自动归档到 OSS
 
 overrides:
-  yunqing/github-trending:
+  yunqy/github-trending:
     warm_days: 365         # 趋势数据保留一年
-  yunqing/github-repos:
+  yunqy/github-repos:
     warm_days: 30          # 仓库数据 30 天后可归档
     archive: false         # 直接删除
 ```
@@ -1326,7 +1326,7 @@ make new-project owner=你的名字 name=你的项目名
 
 编辑 projects/你的名字/你的项目名/scraper.py
 继承 BaseScraper，实现 fetch/parse/save 三个方法
-参考 projects/yunqing/github-trending/ 的写法
+参考 projects/yunqy/github-trending/ 的写法
 
 ## 5. 本地测试
 

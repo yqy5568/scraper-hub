@@ -32,11 +32,11 @@ if grep -q "$ENTRY" "$CODEOWNERS" 2>/dev/null; then
 else
     # 在"成员目录"注释块后追加
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' "/^projects\/yunqing/a\\
+        sed -i '' "/^projects\/yunqy/a\\
 projects/$MEMBER_NAME/**          @$GITHUB_ID          @yqy5568
 " "$CODEOWNERS"
     else
-        sed -i "/^projects\/yunqing/a projects/$MEMBER_NAME/**          @$GITHUB_ID          @yqy5568" "$CODEOWNERS"
+        sed -i "/^projects\/yunqy/a projects/$MEMBER_NAME/**          @$GITHUB_ID          @yqy5568" "$CODEOWNERS"
     fi
     echo "✅ CODEOWNERS 已追加: projects/$MEMBER_NAME/** @$GITHUB_ID"
 fi

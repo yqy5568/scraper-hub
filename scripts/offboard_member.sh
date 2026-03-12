@@ -18,7 +18,7 @@ if [ ! -d "$MEMBER_DIR" ]; then
     exit 1
 fi
 
-if [ "$MEMBER_NAME" = "yunqing" ]; then
+if [ "$MEMBER_NAME" = "yunqy" ]; then
     echo "错误: 不能 offboard Lead 自己"
     exit 1
 fi

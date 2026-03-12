@@ -6,7 +6,7 @@ from packages.core.base_scraper import BaseScraper
 class GithubTrendingScraper(BaseScraper):
 
     def __init__(self):
-        super().__init__("yunqing/github-trending")
+        super().__init__("yunqy/github-trending")
         self.languages = self.config.get("target", {}).get(
             "languages", ["python", "javascript", "go"]
         )
@@ -88,7 +88,7 @@ class GithubTrendingScraper(BaseScraper):
 
         from packages.storage import FileStore
 
-        store = FileStore("data/yunqing/github-trending")
+        store = FileStore("data/yunqy/github-trending")
         filename = f"trending_{date.today().isoformat()}.json"
         store.save_json({"date": date.today().isoformat(), "repos": items}, filename)
         self.logger.info(f"保存 {len(items)} 个仓库到 {filename}")

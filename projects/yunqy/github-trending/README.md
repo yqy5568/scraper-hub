@@ -1,5 +1,5 @@
 ---
-owner: yunqing
+owner: yunqy
 target: GitHub Trending
 status: running
 created: 2026-03-11
@@ -21,11 +21,11 @@ schedule: "0 8 * * *"
 ## 使用
 
 ```bash
-make run owner=yunqing name=github-trending
+make run owner=yunqy name=github-trending
 ```
 
 ## 测试
 
 ```bash
-make test-project owner=yunqing name=github-trending
+make test-project owner=yunqy name=github-trending
 ```

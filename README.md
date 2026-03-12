@@ -8,7 +8,7 @@
 scraper-hub/
 ├── packages/          公共库（HTTP 客户端、代理池、反反爬、存储、通知、工具）
 ├── projects/          按成员分目录，每人管理自己的所有爬虫项目
-│   ├── yunqing/       Lead 目录
+│   ├── yunqy/       Lead 目录
 │   ├── _template/     新项目模板
 │   └── ...            （新成员由 make add-member 自动创建）
 ├── scripts/           运维脚本
